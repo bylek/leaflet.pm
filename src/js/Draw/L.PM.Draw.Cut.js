@@ -41,7 +41,7 @@ Draw.Cut = Draw.Poly.extend({
 
             // if result is a multipolygon, split it into regular polygons
             // TODO: remove as soon as multipolygons are supported
-            if (diff.geometry.type === 'MultiPolygon') {
+            if (diff.geometry && diff.geometry.type === 'MultiPolygon') {
                 const geoJSONs = diff.geometry.coordinates.reduce((arr, coords) => {
                     arr.push({ type: 'Polygon', coordinates: coords });
                     return arr;
