@@ -31,17 +31,17 @@ Draw.Cut = Draw.Poly.extend({
                 }
             });
 
-        // the resulting layers after the cut
-        const resultingLayers = [];
-
         // loop through all layers that intersect with the drawn (cutting) layer
         layers.forEach((l) => {
+            // the resulting layers after the cut
+            const resultingLayers = [];
+
             // find layer difference
             const diff = difference(l.toGeoJSON(), layer.toGeoJSON());
 
             // if result is a multipolygon, split it into regular polygons
             // TODO: remove as soon as multipolygons are supported
-            if (diff.geometry.type === 'MultiPolygon') {
+            if (diff.geometry && diff.geometry.type === 'MultiPolygon') {
                 const geoJSONs = diff.geometry.coordinates.reduce((arr, coords) => {
                     arr.push({ type: 'Polygon', coordinates: coords });
                     return arr;
