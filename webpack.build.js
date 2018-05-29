@@ -2,7 +2,6 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     watch: false,
@@ -17,6 +16,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
+                include: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules/@turf/*')],
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -39,15 +39,6 @@ module.exports = {
     },
     plugins: [
         new ExtractTextPlugin('leaflet.pm.css'),
-        new UglifyJsPlugin({
-            uglifyOptions: {
-                ie8: true,
-                warnings: false, // Suppress uglification warnings
-                output: {
-                    comments: false,
-                },
-            },
-        }),
         new webpack.DefinePlugin({
             'process.env': {
                 // This has effect on the react lib size
