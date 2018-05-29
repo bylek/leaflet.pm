@@ -39,15 +39,15 @@ module.exports = {
     },
     plugins: [
         new ExtractTextPlugin('leaflet.pm.css'),
-        // new UglifyJsPlugin({
-        //     uglifyOptions: {
-        //         ie8: true,
-        //         warnings: false, // Suppress uglification warnings
-        //         output: {
-        //             comments: false,
-        //         },
-        //     },
-        // }),
+        new UglifyJsPlugin({
+            uglifyOptions: {
+                ie8: true,
+                warnings: false, // Suppress uglification warnings
+                output: {
+                    comments: false,
+                },
+            },
+        }),
         new webpack.DefinePlugin({
             'process.env': {
                 // This has effect on the react lib size
