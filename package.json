@@ -49,7 +49,7 @@
     "dev": "./node_modules/.bin/webpack --config=webpack.dev.js",
     "test": "browserify ./spec/test.spec.js | tape-run",
     "build": "./node_modules/.bin/webpack --config=webpack.build.js",
-    "prepare": "npm run build"
+    "prepare": "echo "TEST" && npm run build"
   },
   "repository": {
     "type": "git",
